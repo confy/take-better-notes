@@ -1,6 +1,6 @@
 /*general styling, containers and grids + flex attributes */
 html {
-    background: #B7CECE;
+    background: #272727;
     font-family: 'Noto Sans JP', sans-serif
 }
 
@@ -25,7 +25,7 @@ body {
 
 .header,
 .footer {
-    background: #6E7E85;
+    background: #23385A;
     height: 1fr;
     display: flex;
 }
@@ -35,31 +35,30 @@ body {
     align-items: center;
     justify-content: center;
     grid-area: header;
-    border-bottom: solid #272727 2px;
 }
 .nav {
     grid-area: nav;
     display: flex;
     flex-wrap: wrap;
     height: auto;
-    background: #BBBAC6;
+    background: #2D4A7A;
 }
 .content {
     grid-area: content;
-    display: flex;
-    flex-direction: column;
+    display: flex;    
     background: #ddd;
+    padding: 4em;
 }
 
 
 .footer {
+    padding: 0.5em;
     grid-area: footer;
     display: flex;
     justify-content: center;
 }
 /* styling the inside of elements */
 .header h1 {
-
     justify-content: center;
     padding: 2ex
 }
@@ -67,20 +66,28 @@ body {
     flex: 1 1 150px;
     margin: 0.5em;
 }
-
-.content * {
-    margin: 2em;
-    margin-bottom: 0.25em;
-
+.footer * {
+    margin: 2px;
 }
 
-.content input {
-    font-size: 18px;
-    padding: 20px 10px; 
-    width: 85% height 85%;
-    line-height: 18px;
-    justify-content: center;
-    width: auto;
+.content button {
+    width: 100px;
+    height: 50px
+}
+.content textarea {
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 24px;
+    width: 85%;
+    height: 85%;
+}
+button {
+	background-color:#7DB1CB;
+	border-radius:0px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+
+	text-decoration:none;
 }
 /* Desktop Mode */
 @media screen and (min-width:768px) {
@@ -95,5 +102,8 @@ body {
     }
     .nav {
         height: auto;
+    }
+    .content {
+        flex-direction: column;
     }
 }
