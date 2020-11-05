@@ -1,0 +1,91 @@
+html {
+    background: #E0E1DD;
+    font-family: 'Noto Sans JP', sans-serif
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-areas: "header" "nav" "content" "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: 75px 75px 1fr 60px;
+    gap: 0.5em 0.5em;
+}
+
+@media screen and (min-width:768px) {
+    .container {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 150px 1fr 1fr;
+        grid-template-rows: 75px 1fr 75px;
+        gap: 0.5em 0.5em;
+        grid-template-areas: "header header header header" "nav content content content" "footer footer footer footer";
+    }
+}
+
+.header,
+.footer {
+    background: #1B263B;
+}
+
+.header {
+    justify-content: center;
+    grid-area: header;
+    height: auto;
+    display: flex;
+    align-items: center
+}
+
+.header h1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 2ex
+}
+
+.nav {
+    grid-area: nav;
+    display: flex;
+    height: auto;
+    background: #778DA9;
+}
+
+.notelist {
+    list-style: none;
+    font-size: large
+}
+
+.footer {
+    height: 75px;
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    grid-area: content;
+    display: flex;
+    flex-direction: column;
+    background: #ddd;
+}
+
+.content * {
+    margin: 1em;
+    justify-content: center;
+}
+
+.content input {
+    height: min-content;
+    justify-content: center;
+    width: 75%
+}
