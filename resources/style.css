@@ -1,6 +1,6 @@
 /*general styling, containers and grids + flex attributes */
 html {
-    background: #272727;
+    background: #5a6ea4;
     font-family: 'Noto Sans JP', sans-serif
 }
 
@@ -20,12 +20,12 @@ body {
     grid-template-areas: "header""nav""content""footer";
     grid-template-columns: 1fr;
     grid-template-rows: 75px 150px 1fr 60px;
-    gap: 0.5em 0.5em;
+    gap: 0.4em 0.4em;
 }
 
 .header,
 .footer {
-    background: #23385A;
+    background: #293c81;
     height: 1fr;
     display: flex;
 }
@@ -41,36 +41,44 @@ body {
     display: flex;
     flex-wrap: wrap;
     height: auto;
-    background: #2D4A7A;
+    background: #203975;
 }
 .content {
     grid-area: content;
-    display: flex;    
-    background: #ddd;
+    display: flex;   
+    flex-direction: column; 
+    background: #F0F0EE;
     padding: 4em;
 }
 
 
 .footer {
     padding: 0.5em;
+    align-items: center;
     grid-area: footer;
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 /* styling the inside of elements */
-.header h1 {
+.header h1, .footer h2 {
+    color: #F0F0EE;
     justify-content: center;
-    padding: 2ex
+
 }
 .nav * {
     flex: 1 1 150px;
     margin: 0.5em;
 }
+.nav h2 {
+    align-items: center;
+}
 .footer * {
-    margin: 2px;
+    margin: 1px;
 }
 
 .content button {
+    margin: 2px;
     width: 100px;
     height: 50px
 }
@@ -81,13 +89,34 @@ body {
     height: 85%;
 }
 button {
-	background-color:#7DB1CB;
-	border-radius:0px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    height: auto;
+    box-sizing: border-box;
+	background-color:#f0f0ee;
+    border: 2px solid #203975;
+    border-radius: 5px;
 	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-
-	text-decoration:none;
+    transition-duration: 0.3s;
+    text-decoration:none;
+}
+button:hover {
+    background-color: #5a6ea4;
+    color: #F0F0EE;
+    
+}
+topbuttons #darkmode:hover {
+    background-color: #272727;
+}
+bottombuttons {
+    display: flex;
+    justify-content: center;
+}
+bottombuttons #save:hover{
+    background-color: green;
+}
+bottombuttons #cancel:hover{
+    background-color: red;
 }
 /* Desktop Mode */
 @media screen and (min-width:768px) {
@@ -97,13 +126,9 @@ button {
         display: grid;
         grid-template-columns: 150px 1fr 1fr;
         grid-template-rows: 75px 1fr 75px;
-        gap: 0.5em 0.5em;
         grid-template-areas: "header header header header""nav content content content""footer footer footer footer";
     }
     .nav {
         height: auto;
-    }
-    .content {
-        flex-direction: column;
     }
 }
