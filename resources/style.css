@@ -1,54 +1,47 @@
 /*general styling, containers and grids + flex attributes */
 html {
     background: #5a6ea4;
-    font-family: 'Noto Sans JP', sans-serif
 }
 
 html,
 body {
-    width: 100%;
     height: 100%;
     margin: 0;
-    padding: 0;
     overflow: hidden;
 }
 
 .container {
-    width: 100%;
     height: 100%;
     display: grid;
     grid-template-areas: "header""nav""content""footer";
     grid-template-columns: 1fr;
-    grid-template-rows: 75px 150px 1fr 60px;
+    grid-template-rows: 75px 150px 1fr 75px;
     gap: 0.4em 0.4em;
 }
 
 .header,
-.footer {
+.footer,
+.nav {
     background: #293c81;
-    height: 1fr;
     display: flex;
 }
 
 .header {
-    flex-direction: row;
+    grid-area: header;
     align-items: center;
     justify-content: center;
-    grid-area: header;
 }
 .nav {
     grid-area: nav;
-    display: flex;
     flex-wrap: wrap;
-    height: auto;
-    background: #203975;
+    padding: 5px;
 }
 .content {
     grid-area: content;
     display: flex;   
     flex-direction: column; 
     background: #F0F0EE;
-    padding: 4em;
+    padding: 3em;
 }
 
 
@@ -61,17 +54,23 @@ body {
     justify-content: center;
 }
 /* styling the inside of elements */
-.header h1, .footer h2 {
+h1, h2 {
     color: #F0F0EE;
     justify-content: center;
-
+    
 }
-.nav * {
+h1, h2, textarea, button {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+.nav button {
     flex: 1 1 150px;
     margin: 0.5em;
 }
-.nav h2 {
-    align-items: center;
+.navheader {
+    height: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 .footer * {
     margin: 1px;
@@ -83,27 +82,21 @@ body {
     height: 50px
 }
 .content textarea {
-    font-family: 'Noto Sans JP', sans-serif;
     line-height: 24px;
     width: 85%;
     height: 85%;
 }
 button {
-    font-family: 'Noto Sans JP', sans-serif;
     font-size: 14px;
     height: auto;
     box-sizing: border-box;
 	background-color:#f0f0ee;
     border: 2px solid #203975;
     border-radius: 5px;
-	display:inline-block;
-    transition-duration: 0.3s;
-    text-decoration:none;
 }
 button:hover {
     background-color: #5a6ea4;
     color: #F0F0EE;
-    
 }
 topbuttons #darkmode:hover {
     background-color: #272727;
@@ -119,7 +112,7 @@ bottombuttons #cancel:hover{
     background-color: red;
 }
 /* Desktop Mode */
-@media screen and (min-width:768px) {
+@media screen and (min-width:700px) {
     .container {
         width: 100%;
         height: 100%;
@@ -130,5 +123,8 @@ bottombuttons #cancel:hover{
     }
     .nav {
         height: auto;
+    }
+    .navheader {
+        height: 30px;
     }
 }
