@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="resources/style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Take Better Notes</title>
 </head>
 
@@ -23,7 +23,9 @@
             </h1>
         </div>
         <div class="nav">
-            <div class="navheader"><h2>My Notes</h2></div>
+            <div class="navheader">
+                <h2>My Notes</h2>
+            </div>
             <button>Note 1</button>
             <button>Note 2</button>
             <button>Note 3</button>
@@ -34,7 +36,7 @@
         <div class='content'>
             <topbuttons>
                 <button>New Note</button>
-                <button id='darkmode'>Dark Mode</button>
+                <button id='darkmode' onclick="darkMode()">Dark Mode</button>
             </topbuttons>
             <textarea></textarea>
             <bottombuttons>
@@ -52,5 +54,6 @@
         </div>
 
 </body>
+<script src="app.js"></script>
 
 </html>
