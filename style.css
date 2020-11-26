@@ -29,7 +29,6 @@ body {
 	justify-content: center;
 }
 .nav {
-	background: #7e7e9a;
 	grid-area: nav;
 	flex-wrap: wrap;
 	padding: 5px;
@@ -63,7 +62,7 @@ button {
 	font-family: 'Noto Sans JP', sans-serif;
 }
 .nav button {
-	flex: 0 1 150px;
+	flex: 1 1 150px;
 	margin: 0.5em;
 }
 .navheader {
