@@ -4,9 +4,15 @@ const content = document.querySelector(".content")
 const textarea = document.querySelector(".content textarea")
 const menus = document.querySelectorAll(".header, .footer, .nav")
 const buttons = document.querySelectorAll("button")
+const btnNewNote = document.querySelector("#new")
 const btnTheme = document.querySelector("#changeTheme")
+const btnCancel = document.querySelector("#cancel")
+const btnSave = document.querySelector("#save")
 
-
+let notesArray = [
+    {title:"note one", body:"some text 1"},
+    {title:"note two", body:"some text 2"}
+]
 //Dark or light mode toggle
 const theme = {
     html: ["#F0F0EE", "#2E3440"],
@@ -37,3 +43,30 @@ btnTheme.addEventListener("click", () => {
         buttons[i].style.border = theme["btnBorder"][themeNo]
     }
 })
+
+
+hidden = false
+btnCancel.addEventListener("click", () => {
+    toggleContent(false)
+    hidden = true
+})
+
+btnNewNote.addEventListener("click", () =>{
+    if (hidden == true) {
+        toggleContent(true)
+        hidden = false
+    } else {
+        textarea.value = ""
+    }
+})
+function toggleContent(visibility) {
+    if (visibility == false){
+        textarea.style.visibility = "hidden"
+        btnSave.style.visibility = "hidden"
+        btnCancel.style.visibility = "hidden"
+    } else {
+        textarea.style.visibility = "visible"
+        btnSave.style.visibility = "visible"
+        btnCancel.style.visibility = "visible"
+    }
+}
