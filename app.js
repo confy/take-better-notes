@@ -4,9 +4,8 @@ const content = document.querySelector(".content")
 const textarea = document.querySelector(".content textarea")
 const errortxt = document.querySelector("#error")
 const nav = document.querySelector(".nav")
-const navlist = document.querySelector(".navlist")
 const menus = document.querySelectorAll(".header, .footer, .nav")
-var buttons = document.querySelectorAll("button")
+const buttons = document.querySelectorAll("button")
 const btnNewNote = document.querySelector("#new")
 const btnTheme = document.querySelector("#changeTheme")
 const btnCancel = document.querySelector("#cancel")
@@ -19,21 +18,24 @@ let notesArray = [
 ]
 
 
-//Dark and light themes
+//Dark or light mode toggle
 const theme = {
-    html: ["#f7faff", "#2E3440"],
-    menus: ["#5E81AC", "#4C566A"],
-    content: ["#d8dee9", "#3B4252"],
-    textAreaBg: ["#f7faff", "#3B4252"],
+    html: ["#F0F0EE", "#2E3440"],
+    menus: ["#293c81", "#4C566A"],
+    content: ["#c8c8cf", "#3B4252"],
+    textAreaBg: ["#F0F0EE", "#3B4252"],
     textAreaTxt: ["#000", "#E5E9F0"],
-    btnBg: ["#eceff4", "#4C566A"],
+    btnBg: ["#F0F0EE", "#4C566A"],
     btnTxt: ["#000", "#E5E9F0"],
-    btnBorder: ["2px solid #4c566a", "2px solid #2E3440"],
+    btnBorder: ["2px solid #203975", "2px solid #2E3440"],
     darkOrLight: ["Dark Mode", "Light Mode"],
 }
 
-function darkMode(themeCount) {
-    let themeNo = themeCount % 2
+let count = 0
+
+btnTheme.addEventListener("click", () => {
+    count++
+    let themeNo = count % 2
     btnTheme.innerHTML = theme.darkOrLight[themeNo]
     html.style.background = theme.html[themeNo]
     content.style.background = theme.content[themeNo]
@@ -49,7 +51,7 @@ function darkMode(themeCount) {
         buttons[i].style.background = theme.btnBg[themeNo]
         buttons[i].style.border = theme.btnBorder[themeNo]
     }
-}
+})
 
 function toggleContent(visibility) {
     if (visibility == false) {
@@ -64,6 +66,14 @@ function toggleContent(visibility) {
     }
 }
 
+hidden = false
+btnCancel.addEventListener("click", () => {
+    toggleContent(false)
+    hidden = true
+})
+
+
+//Checks ands sees if note exists in array
 function checkNote(title) {
     for (i = 0; i < notesArray.length; i++) {
         if (notesArray[i].title == title) {
@@ -72,25 +82,11 @@ function checkNote(title) {
     }
     return true
 }
-
-function createNote(title, body) {
-    notesArray.push({ title: `${title}`, body: `${body}` })
-    let notebtn = document.createElement("button")
-    let notetitle = document.createTextNode(`${title}`)
-    notebtn.setAttribute("id", title)
-    notebtn.appendChild(notetitle)
-        // navlist.innerHTML += `
-        // <button id="${title}">${title}</button>
-        // `
-    navlist.appendChild(notebtn)
-    buttons = document.querySelectorAll("button")
-    if (themeCount % 2 == 0) {
-        darkMode(0)
-    } else {
-        darkMode(1)
-    }
-
+function createBtn(title) {
 }
+function addToArray(title, body) {
+}
+
 //Appends error txt to content
 function error(show) {
     if (show == true) {
@@ -100,57 +96,36 @@ function error(show) {
     }
 }
 
-//Dark mode
-let themeCount = 0
-btnTheme.addEventListener("click", () => {
-    themeCount++
-    darkMode(themeCount)
-})
-
-
-contentHidden = false
-btnCancel.addEventListener("click", () => {
-        toggleContent(false)
-        contentHidden = true
-    })
-    // Save button
+// Save button
 btnSave.addEventListener("click", () => {
-    for (i = 0; i < notesArray.length; i++) {
-        console.log(notesArray[i])
-    }
     if (textarea.value !== "") {
-        let bodyLines = textarea.value.split("\n")
-        let title = bodyLines[0]
+        let bodyLines = textarea.value.split("/n")
+        let title = bodyLines[0].toLowerCase()
         if (checkNote(title) == false) {
             error(true)
-
+            console.log("dupe")
             return null
         }
-        bodyLines.shift()
-        let body = bodyLines.join("\n")
-        createNote(title, body)
+        let body = ""
+        for (i = 1; i < bodyLines; i++) {
+            body += `${bodyLines[i]}\n`
+        }
     } else {
         return null
     }
-    error(false)
-
 })
 
 // New Note button
 btnNewNote.addEventListener("click", () => {
-    if (contentHidden == true) {
+    if (hidden == true) {
         toggleContent(true)
-        contentHidden = false
+        hidden = false
     } else {
         textarea.value = ""
     }
 })
 
-navlist.addEventListener("click", (e) => {
-    for (i = 0; i < notesArray.length; i++) {
-        if (notesArray[i].title == e.target.id) {
-            notesValue = `${notesArray[i].title}\n${notesArray[i].body}`
-        }
-    }
-    textarea.value = notesValue
-})
+
+
+
+

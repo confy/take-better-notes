@@ -1,7 +1,7 @@
 /*general styling, containers and grids + flex attributes */
 
 html {
-    background: #f7faff;
+    background: #f0f0ee;
 }
 
 html,
@@ -39,14 +39,13 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     padding: 5px;
-    width: 100%;
 }
 
 .content {
     grid-area: content;
     display: flex;
     flex-direction: column;
-    background: #d8dee9;
+    background: #c8c8cf;
     padding: 3em;
 }
 
@@ -76,7 +75,7 @@ button {
 }
 
 .nav button {
-    flex: 1 1 5em;
+    flex: 0 1 5em;
     margin: 0.5em;
 }
 
@@ -97,7 +96,6 @@ button {
 }
 
 .content textarea {
-    background-color: #f7faff;
     outline: none;
     line-height: 24px;
     width: 85%;
@@ -109,10 +107,14 @@ button {
     height: auto;
     color: #181848;
     box-sizing: border-box;
-    background-color: #eceff4;
+    background-color: #f0f0ee;
     border: 2px solid #203975;
     border-radius: 5px;
-    overflow-wrap: break-word;
+}
+
+button:hover {
+    background-color: #a2b0e2;
+    color: #f0f0ee;
 }
 
 topbuttons #darkmode:hover {
@@ -139,7 +141,7 @@ bottombuttons #cancel:hover {
 
 /* Desktop Mode */
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 700px) {
     .container {
         width: 100%;
         height: 100%;
@@ -149,10 +151,9 @@ bottombuttons #cancel:hover {
         grid-template-areas: "header header header header" "nav content content content" "footer footer footer footer";
     }
     .navlist {
-        width: 150px;
         flex-direction: column;
     }
     .nav h2 {
-        margin: 1em 1.5em 1em auto;
+        margin: 1em auto 1em auto;
     }
 }
