@@ -1,7 +1,7 @@
 /*general styling, containers and grids + flex attributes */
 
 html {
-    background: #F0F0EE;
+    background: #f0f0ee;
 }
 
 html,
@@ -14,7 +14,7 @@ body {
 .container {
     height: 100%;
     display: grid;
-    grid-template-areas: "header""nav""content""footer";
+    grid-template-areas: "header" "nav" "content" "footer";
     grid-template-columns: 1fr;
     grid-template-rows: 75px 150px 1fr 75px;
     gap: 0.4em 0.4em;
@@ -33,8 +33,10 @@ body {
     justify-content: center;
 }
 
-.nav {
+.navlist {
+    display: flex;
     grid-area: nav;
+    flex-direction: row;
     flex-wrap: wrap;
     padding: 5px;
 }
@@ -56,11 +58,12 @@ body {
     justify-content: center;
 }
 
+
 /* styling the inside of elements */
 
 h1,
 h2 {
-    color: #E5E9F0;
+    color: #e5e9f0;
     justify-content: center;
 }
 
@@ -68,19 +71,18 @@ h1,
 h2,
 textarea,
 button {
-    font-family: 'Noto Sans JP', sans-serif;
+    font-family: "Noto Sans JP", sans-serif;
 }
 
 .nav button {
-    flex: 1 1 150px;
+    flex: 0 1 5em;
     margin: 0.5em;
 }
 
-.navheader {
-
-    margin-left: auto;
-    margin-right: auto;
-
+.nav h2 {
+    margin: auto 1em auto 1em;
+    flex: none;
+    padding-bottom: 0em;
 }
 
 .footer * {
@@ -90,7 +92,7 @@ button {
 .content button {
     margin: 10px;
     width: 100px;
-    height: 50px
+    height: 50px;
 }
 
 .content textarea {
@@ -112,11 +114,11 @@ button {
 
 button:hover {
     background-color: #a2b0e2;
-    color: #F0F0EE;
+    color: #f0f0ee;
 }
 
 topbuttons #darkmode:hover {
-    background-color: #2E3440;
+    background-color: #2e3440;
 }
 
 bottombuttons {
@@ -125,16 +127,18 @@ bottombuttons {
 }
 
 bottombuttons #save:hover {
-    background-color: #A3BE8C;
+    background-color: #a3be8c;
 }
 
 bottombuttons #cancel:hover {
-    background-color: #BF616A;
+    background-color: #bf616a;
 }
 
 #error {
-	visibility: hidden;
+    visibility: hidden;
 }
+
+
 /* Desktop Mode */
 
 @media screen and (min-width: 700px) {
@@ -144,14 +148,12 @@ bottombuttons #cancel:hover {
         display: grid;
         grid-template-columns: 150px 1fr 1fr;
         grid-template-rows: 75px 1fr 75px;
-        grid-template-areas: "header header header header""nav content content content""footer footer footer footer";
+        grid-template-areas: "header header header header" "nav content content content" "footer footer footer footer";
     }
-
-    .nav {
-        height: auto;
+    .navlist {
+        flex-direction: column;
     }
-
-    .navheader {
-        height: 0px;
+    .nav h2 {
+        margin: 1em auto 1em auto;
     }
 }
