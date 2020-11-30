@@ -132,6 +132,9 @@ bottombuttons #cancel:hover {
     background-color: #BF616A;
 }
 
+#error {
+	visibility: hidden;
+}
 /* Desktop Mode */
 
 @media screen and (min-width: 700px) {
