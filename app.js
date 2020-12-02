@@ -119,7 +119,7 @@ btnNewNote.addEventListener("click", () => {
         contentHidden = false
     } else {
         textarea.value = ""
-        errortxt.classList.toggle("invisible")
+        errortxt.style.visibility = "hidden"
 
     }
 })
