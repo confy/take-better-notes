@@ -4,6 +4,10 @@ html {
     background: #f7faff;
 }
 
+html.dark {
+    background-color: #2e3440;
+}
+
 html,
 body {
     height: 100%;
@@ -27,6 +31,12 @@ body {
     display: flex;
 }
 
+.header.dark,
+.footer.dark,
+.nav.dark {
+    background: #4c566a;
+}
+
 .header {
     grid-area: header;
     align-items: center;
@@ -48,6 +58,10 @@ body {
     flex-direction: column;
     background: #d8dee9;
     padding: 3em;
+}
+
+.content.dark {
+    background: #3b4252;
 }
 
 .footer {
@@ -104,6 +118,11 @@ button {
     height: 85%;
 }
 
+.content textarea.dark {
+    background-color: #3b4252;
+    color: #e5e9f0;
+}
+
 button {
     font-size: 14px;
     height: auto;
@@ -115,8 +134,10 @@ button {
     overflow-wrap: break-word;
 }
 
-topbuttons #darkmode:hover {
-    background-color: #2e3440;
+button.dark {
+    background-color: #4c566a;
+    color: #e5e9f0;
+    border: 2px solid #2E3440;
 }
 
 bottombuttons {
@@ -126,17 +147,24 @@ bottombuttons {
 
 #cancel {
     color: #fff;
-    background-color: #BF616A;
-    border: 2px solid #DF5562;
+    background-color: #d81e5b;
 }
 
 #save {
     color: #fff;
-    background-color: #A3BE8C;
-    border: 2px solid #88C257;
+    background-color: #70a37f;
 }
 
 #error {
+    color: #5e81ac;
+    visibility: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+.invisible {
     visibility: hidden;
 }
 

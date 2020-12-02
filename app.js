@@ -19,48 +19,30 @@ let notesArray = [
 ]
 
 
-//Dark and light themes
-const theme = {
-    html: ["#f7faff", "#2E3440"],
-    menus: ["#5E81AC", "#4C566A"],
-    content: ["#d8dee9", "#3B4252"],
-    textAreaBg: ["#f7faff", "#3B4252"],
-    textAreaTxt: ["#000", "#E5E9F0"],
-    btnBg: ["#eceff4", "#4C566A"],
-    btnTxt: ["#000", "#E5E9F0"],
-    btnBorder: ["2px solid #4c566a", "2px solid #2E3440"],
-    darkOrLight: ["Dark Mode", "Light Mode"],
-}
-
 function darkMode(themeCount) {
     let themeNo = themeCount % 2
-    btnTheme.innerHTML = theme.darkOrLight[themeNo]
-    html.style.background = theme.html[themeNo]
-    content.style.background = theme.content[themeNo]
-    textarea.style.background = theme.textAreaBg[themeNo]
-    textarea.style.color = theme.textAreaTxt[themeNo]
-
+    themes = ["Dark Mode", "Light Mode"]
+    btnTheme.innerHTML = themes[themeNo]
+    html.classList.toggle("dark")
+    content.classList.toggle("dark")
+    textarea.classList.toggle("dark")
     for (i = 0; i < menus.length; i++) {
-        menus[i].style.background = theme.menus[themeNo]
+        menus[i].classList.toggle("dark")
     }
 
     for (i = 0; i < buttons.length; i++) {
-        buttons[i].style.color = theme.btnTxt[themeNo]
-        buttons[i].style.background = theme.btnBg[themeNo]
-        buttons[i].style.border = theme.btnBorder[themeNo]
+        buttons[i].classList.toggle("dark")
     }
 }
 
 function toggleContent(visibility) {
-    if (visibility == false) {
-        textarea.style.visibility = "hidden"
-        btnSave.style.visibility = "hidden"
-        btnCancel.style.visibility = "hidden"
+    textarea.classList.toggle("hidden")
+    btnSave.classList.toggle("hidden")
+    btnCancel.classList.toggle("hidden")
+    if (contentHidden == false) {
         errortxt.style.visibility = "hidden"
     } else {
-        textarea.style.visibility = "visible"
-        btnSave.style.visibility = "visible"
-        btnCancel.style.visibility = "visible"
+        errortxt.style.visibility = "visible"
     }
 }
 
@@ -78,18 +60,12 @@ function createNote(title, body) {
     let notebtn = document.createElement("button")
     let notetitle = document.createTextNode(`${title}`)
     notebtn.setAttribute("id", title)
+    if (themeCount % 2 == 1) {
+        notebtn.setAttribute("class", "dark")
+    }
     notebtn.appendChild(notetitle)
-        // navlist.innerHTML += `
-        // <button id="${title}">${title}</button>
-        // `
     navlist.appendChild(notebtn)
     buttons = document.querySelectorAll("button:not(.bottom)")
-    if (themeCount % 2 == 0) {
-        darkMode(0)
-    } else {
-        darkMode(1)
-    }
-
 }
 //Appends error txt to content
 function error(show) {
@@ -143,8 +119,12 @@ btnNewNote.addEventListener("click", () => {
         contentHidden = false
     } else {
         textarea.value = ""
+        errortxt.classList.toggle("invisible")
+
     }
 })
+
+
 
 navlist.addEventListener("click", (e) => {
     for (i = 0; i < notesArray.length; i++) {
