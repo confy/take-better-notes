@@ -12,15 +12,15 @@ const btnTheme = document.querySelector("#changeTheme")
 const btnCancel = document.querySelector("#cancel")
 const btnSave = document.querySelector("#save")
 
-
+//array of all notes
 let notesArray = [
     { title: "note one", body: "some text 1" },
     { title: "note two", body: "some text 2" }
 ]
 
 
-function darkMode(themeCount) {
-    let themeNo = themeCount % 2
+function darkMode(themeNo) {
+    //Toggles darkmode depending on theme number
     themes = ["Dark Mode", "Light Mode"]
     btnTheme.innerHTML = themes[themeNo]
     html.classList.toggle("dark")
@@ -35,18 +35,23 @@ function darkMode(themeCount) {
     }
 }
 
-function toggleContent(visibility) {
+function toggleContent() {
+    //Toggles content visibility
     textarea.classList.toggle("hidden")
     btnSave.classList.toggle("hidden")
     btnCancel.classList.toggle("hidden")
     if (contentHidden == false) {
         errortxt.style.visibility = "hidden"
+        contentHidden = true
     } else {
         errortxt.style.visibility = "visible"
+        contentHidden = false
     }
+
 }
 
 function checkNote(title) {
+    //checks for a note existence in NotesArray
     for (i = 0; i < notesArray.length; i++) {
         if (notesArray[i].title == title) {
             return false
@@ -56,6 +61,7 @@ function checkNote(title) {
 }
 
 function createNote(title, body) {
+    //Adds Note to array and creates a button for note
     notesArray.push({ title: `${title}`, body: `${body}` })
     let notebtn = document.createElement("button")
     let notetitle = document.createTextNode(`${title}`)
@@ -67,8 +73,8 @@ function createNote(title, body) {
     navlist.appendChild(notebtn)
     buttons = document.querySelectorAll("button:not(.bottom)")
 }
-//Appends error txt to content
 function error(show) {
+    //Shows error text
     if (show == true) {
         errortxt.style.visibility = "visible"
     } else {
@@ -76,21 +82,24 @@ function error(show) {
     }
 }
 
-//Dark mode
 let themeCount = 0
 btnTheme.addEventListener("click", () => {
+    //Dark Mode button
     themeCount++
-    darkMode(themeCount)
+    let themeNo = themeCount % 2
+    darkMode(themeNo)
 })
 
 
-contentHidden = false
+let contentHidden = false
 btnCancel.addEventListener("click", () => {
-        toggleContent(false)
-        contentHidden = true
-    })
-    // Save button
+    //cancel button
+    toggleContent(false)
+    contentHidden = true
+})
+// Save button
 btnSave.addEventListener("click", () => {
+    //Save Button
     for (i = 0; i < notesArray.length; i++) {
         console.log(notesArray[i])
     }
@@ -112,11 +121,10 @@ btnSave.addEventListener("click", () => {
 
 })
 
-// New Note button
 btnNewNote.addEventListener("click", () => {
+    // New Note button
     if (contentHidden == true) {
         toggleContent(true)
-        contentHidden = false
     } else {
         textarea.value = ""
         errortxt.style.visibility = "hidden"
@@ -127,6 +135,7 @@ btnNewNote.addEventListener("click", () => {
 
 
 navlist.addEventListener("click", (e) => {
+    //Event listener for list of notes
     for (i = 0; i < notesArray.length; i++) {
         if (notesArray[i].title == e.target.id) {
             notesValue = `${notesArray[i].title}\n${notesArray[i].body}`
